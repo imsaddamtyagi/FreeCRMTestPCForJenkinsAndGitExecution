@@ -40,6 +40,10 @@ public class HomePage extends TestBase {
 		return new ContactsPage();
 	}
 	
+	public void clickOnNewContactLink()
+	{
+		contactsLink.click();
+	}
 	
 	
 
