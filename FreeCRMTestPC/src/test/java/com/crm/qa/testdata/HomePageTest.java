@@ -31,20 +31,20 @@ public class HomePageTest extends TestBase {
 		hp = lp.login(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
-	@Test(priority=1,enabled=false)
+	@Test(priority=1,enabled=true)
 	public void verifyHomePageTitleTest()
 	{
 	 String homePageTitle= hp.verifyHomePageTitle();
 	 Assert.assertEquals(homePageTitle, "Cogmento CRM","Home Page title not matched."); // msg will be printed if test case failed.
 	}
 	
-	@Test(priority=2,enabled=false)
+	@Test(priority=2,enabled=true)
 	public void verifyUserNameTest()
 	{
 	Assert.assertTrue(hp.verifyCorrectUserName());
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3,enabled=true)
 	 public void verifyContactsLinkTest()
 	 {
 		 cp =hp.clickOnContactsLink();
