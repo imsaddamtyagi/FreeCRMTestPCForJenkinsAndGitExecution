@@ -1,34 +1,34 @@
 package com.crm.qa.base;
 
+import com.crm.qa.util.TestUtil;
+import com.crm.qa.util.WebEventListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 
-import com.crm.qa.util.TestUtil;
+
 
 public class TestBase {
 	
   public  static WebDriver driver;
   public  static Properties prop;
+  public static EventFiringWebDriver e_driver;
+  public static WebDriverEventListener eventListener;
   
-	
 	public TestBase() 	{     // 2
 	try	{
 	System.out.println("TestBase constructor started : loading property file");
 	prop = new Properties();
 	FileInputStream ip = new FileInputStream(System.getProperty("user.dir")+"/src/main/java/com/crm/qa/config/config.properties");
 	prop.load(ip);
-	}
-	catch(FileNotFoundException e)
-	     {	e.printStackTrace();}
-	catch(IOException e)
-    	{	e.printStackTrace();}	
+	}	                                                                                                                                        catch(FileNotFoundException e)	  {e.printStackTrace();}	catch(IOException e)              {e.printStackTrace();}	
 	System.out.println("TestBase constructor ended: prop loaded");
 	}
 	
@@ -47,6 +47,13 @@ public class TestBase {
 	    	System.setProperty("webdriver.gecko.driver","./Drivers\\geckodriver.exe");
 	    	driver = new FirefoxDriver();
 	    }
+	    
+	    e_driver = new EventFiringWebDriver(driver);
+	    //Now create object of EventListenerHandler to register it with EventFiringWebDriver
+	    eventListener = new WebEventListener();
+	    e_driver.register(eventListener);
+	    driver = e_driver;
+	     
 	    	
 	    driver.manage().window().maximize();
 	    driver.manage().deleteAllCookies();

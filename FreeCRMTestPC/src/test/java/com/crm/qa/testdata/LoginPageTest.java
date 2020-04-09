@@ -28,7 +28,7 @@ public class LoginPageTest extends TestBase
 	System.out.println("'Before Method': END"); // come back to Loginpage const to initialize Obj Repo.
 	}
 	
-	@Test(priority=1,enabled=true)
+	@Test(priority=1,enabled=false)
 	public void loginPageTitleTest()     //8
 	{
 	   System.out.println("Inside First Test case");
@@ -38,7 +38,7 @@ public class LoginPageTest extends TestBase
 	}                     
 	
 	
-	@Test(priority=2,enabled=true)
+	@Test(priority=2,enabled=false)
 	public void crmLogoImageTest()    // 11
 	{
 		System.out.println("Inside second Test case");
